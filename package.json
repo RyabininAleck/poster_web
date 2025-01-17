@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "stop": "lsof -t -i:3000 -i:3001 | xargs -r kill",
+    "stop": "ps aux | grep \"npm\" | grep -v \"grep\" | awk '{print $2}' | xargs kill -9",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
