@@ -32,5 +32,5 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_HOST }} -p ${{ secrets.SERVER_PORT }} << 'EOF'
             cd /home/poster_web || exit
             npm install
-            npm run build
+            npm run dev
           EOF
