@@ -117,8 +117,8 @@ export default function Testimonials() {
   const masonryContainer = useMasonry();
   const [category, setCategory] = useState<number>(1);
 
-  const [start, setStart] = useState(null);  // Начальная выбранная кнопка
-  const [end, setEnd] = useState(null);  // Конечная выбранная кнопка
+  const [start, setStart] = useState<number | null>(null);
+  const [end, setEnd] = useState<number | null>(null);
 
   const today = new Date();
   const currentDay = today.getDate();  // День месяца
@@ -135,7 +135,7 @@ export default function Testimonials() {
   // Получаем категории (числа дней месяца)
   const categories = getCategoriesForCurrentMonth();
 
-  const getHighlightedCategories = () => {
+  const getHighlightedCategories = (): number[] => {
     if (start !== null && end !== null) {
       const low = Math.min(start, end);
       const high = Math.max(start, end);
@@ -145,15 +145,16 @@ export default function Testimonials() {
       }
       return highlighted;
     }
-    return [start];
+    return start !== null ? [start] : [];
   };
+
 
   // Получаем выделенные категории
   const highlightedCategories = getHighlightedCategories();
 
 
   // Функция для обработки нажатия на кнопку
-  const handleButtonClick = async (category) => {
+  const handleButtonClick = async (category: number) => {
     const [testimonials, setTestimonials] = useState([]); // Данные от бэка (отзывы)
 
     const startDate = new Date();
@@ -187,7 +188,7 @@ export default function Testimonials() {
           {/* Календарь */}
           <div className="flex justify-center pb-12 max-md:hidden md:pb-16">
             <div className="relative inline-flex flex-wrap justify-center rounded-[1.25rem] bg-gray-800/40 p-1">
-              {categories.map((category) => {
+              {categories.map((category :number) => {
                 const isHighlighted = highlightedCategories.includes(category);
                 return (
                     <button
