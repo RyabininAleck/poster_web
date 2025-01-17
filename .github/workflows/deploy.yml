@@ -22,14 +22,14 @@ jobs:
       - name: Clone repository
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_HOST }} -p ${{ secrets.SERVER_PORT }} << 'EOF'
-            cd /home/poster || exit
+            cd /home/posterFront || exit
             git pull origin main
           EOF
 
       - name: Install dependencies and build application
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_HOST }} -p ${{ secrets.SERVER_PORT }} << 'EOF'
-            cd /home/poster || exit
+            cd /home/posterFront || exit
             npm install
             npm run build
           EOF
