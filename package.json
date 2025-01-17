@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "stop": "kill $(lsof -t -i:3000) $(lsof -t -i:3001)",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
